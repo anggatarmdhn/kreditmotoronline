@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Serve compiled Vite assets from public/build when the project is accessed from the repo root
+    RewriteRule ^build/(.*)$ public/build/$1 [L]
+
+    # Keep direct access to existing files and directories
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Route all other requests through Laravel front controller
+    RewriteRule ^ index.php [L]
+</IfModule>

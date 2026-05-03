@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#ffffff" stroke="#d1d5db" stroke-width="8"/>
+  <text x="50%" y="46%" text-anchor="middle" fill="#6b7280" font-family="Arial, sans-serif" font-size="40" font-weight="700">CONTOH GAMBAR</text>
+  <text x="50%" y="58%" text-anchor="middle" fill="#9ca3af" font-family="Arial, sans-serif" font-size="32">800 x 800</text>
+</svg>
