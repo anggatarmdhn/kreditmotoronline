@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Motor;
-use App\Models\JenisMotor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,14 +10,13 @@ class MotorController extends Controller
 {
     public function index()
     {
-        $motors = Motor::with('jenisMotor')->latest()->paginate(10);
+        $motors = Motor::latest()->paginate(10);
         return view('modules.motor.index', compact('motors'));
     }
 
     public function create()
     {
-        $jenisMotors = JenisMotor::all();
-        return view('modules.motor.create', compact('jenisMotors'));
+        return view('modules.motor.create');
     }
 
     public function store(Request $request)
@@ -26,7 +24,6 @@ class MotorController extends Controller
         $validated = $request->validate([
             'kode_motor' => 'required|unique:motors,kode_motor',
             'nama_motor' => 'required',
-            'id_jenis' => 'required|exists:jenis_motors,id',
             'harga_cash' => 'required|numeric',
             'dp_minimum' => 'required|numeric',
             'stok' => 'required|integer',
@@ -59,8 +56,7 @@ class MotorController extends Controller
 
     public function edit(Motor $motor)
     {
-        $jenisMotors = JenisMotor::all();
-        return view('modules.motor.edit', compact('motor', 'jenisMotors'));
+        return view('modules.motor.edit', compact('motor'));
     }
 
     public function update(Request $request, Motor $motor)
@@ -68,7 +64,6 @@ class MotorController extends Controller
         $validated = $request->validate([
             'kode_motor' => 'required|unique:motors,kode_motor,' . $motor->id,
             'nama_motor' => 'required',
-            'id_jenis' => 'required|exists:jenis_motors,id',
             'harga_cash' => 'required|numeric',
             'dp_minimum' => 'required|numeric',
             'stok' => 'required|integer',

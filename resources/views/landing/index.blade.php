@@ -123,9 +123,7 @@
             <div class="max-w-7xl mx-auto px-4 md:px-5 pb-4 overflow-x-auto">
                 <div class="flex items-center gap-2 min-w-max text-sm">
                     <a href="{{ route('landing') }}" class="px-3 py-1.5 rounded-full border border-slate-300 bg-white text-slate-700">Semua Kategori</a>
-                    @foreach($types as $type)
-                        <label class="px-3 py-1.5 rounded-full border border-slate-200 bg-slate-50 text-slate-700">{{ $type->merk }} - {{ $type->jenis }}</label>
-                    @endforeach
+
                     <span class="px-3 py-1.5 rounded-full bg-red-50 text-red-700 border border-red-100 font-semibold">Jenis Cicilan & Metode Bayar</span>
                 </div>
             </div>
@@ -207,20 +205,6 @@
 
                     <form method="GET" action="{{ route('landing') }}" class="mt-5 space-y-6">
                         <div>
-                            <h4 class="font-semibold text-slate-800 mb-3">Tipe Motor</h4>
-                            <div class="space-y-2 text-sm max-h-48 overflow-auto pr-1">
-                                @forelse($types as $type)
-                                    <label class="flex items-center gap-2 text-slate-700">
-                                        <input type="checkbox" name="tipe[]" value="{{ $type->id }}" {{ in_array($type->id, $filters['tipe'], true) ? 'checked' : '' }} class="rounded border-slate-300 text-red-600 focus:ring-red-500">
-                                        <span>{{ $type->merk }} - {{ $type->jenis }}</span>
-                                    </label>
-                                @empty
-                                    <p class="text-slate-500">Belum ada data tipe.</p>
-                                @endforelse
-                            </div>
-                        </div>
-
-                        <div>
                             <h4 class="font-semibold text-slate-800 mb-3">Harga OTR</h4>
                             <div class="space-y-2 text-sm">
                                 <label class="flex items-center gap-2 text-slate-700"><input type="radio" name="harga" value="" {{ $filters['harga'] === null || $filters['harga'] === '' ? 'checked' : '' }} class="border-slate-300 text-red-600 focus:ring-red-500"> Semua Harga</label>
@@ -285,9 +269,8 @@
                                     </div>
                                 </div>
                                 <div class="p-4">
-                                    <p class="text-xs text-slate-500 uppercase tracking-[0.16em]">{{ $motor->jenisMotor?->merk ?? '' }}</p>
                                     <h4 class="text-2xl font-extrabold text-slate-900 mt-1 leading-tight">{{ $motor->nama_motor }}</h4>
-                                    <p class="text-sm text-slate-500 mt-1">{{ $motor->kode_motor }} | {{ $motor->jenisMotor?->jenis ?? '-' }} | {{ $motor->warna }}</p>
+                                    <p class="text-sm text-slate-500 mt-1">{{ $motor->kode_motor }} | {{ $motor->warna }}</p>
 
                                     <div class="mt-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">
                                         <p class="text-xs text-slate-500">OTR mulai dari</p>

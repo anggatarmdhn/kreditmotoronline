@@ -13,8 +13,4 @@ class JenisMotor extends Model
         'image_url',
     ];
 
-    public function motors(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(Motor::class, 'id_jenis');
-    }
 }

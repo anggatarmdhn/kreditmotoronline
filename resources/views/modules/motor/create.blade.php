@@ -23,14 +23,6 @@
 
             <div class="grid grid-cols-2 gap-5">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Kategori / Jenis</label>
-                    <select name="id_jenis" required class="w-full text-sm rounded-xl border border-slate-300 focus:border-red-500 py-2.5 px-3">
-                        @foreach($jenisMotors as $jenis)
-                            <option value="{{ $jenis->id }}">{{ $jenis->merk }} - {{ $jenis->jenis }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1.5">Tahun Produksi</label>
                     <input type="number" name="tahun_produksi" value="{{ old('tahun_produksi', date('Y')) }}" required class="w-full text-sm rounded-xl border border-slate-300 focus:border-red-500 py-2.5 px-3">
                 </div>

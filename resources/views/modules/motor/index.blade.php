@@ -33,7 +33,7 @@
                 <tr class="hover:bg-slate-50 transition">
                     <td class="px-6 py-4">
                         <div class="font-bold text-slate-800">{{ $motor->nama_motor }}</div>
-                        <div class="text-xs text-slate-500 mt-1">{{ $motor->kode_motor }} • {{ $motor->jenisMotor?->merk ?? '-' }}</div>
+                        <div class="text-xs text-slate-500 mt-1">{{ $motor->kode_motor }}</div>
                     </td>
                     <td class="px-6 py-4">
                         <div class="font-bold text-slate-800">Rp {{ number_format($motor->harga_cash, 0, ',', '.') }}</div>

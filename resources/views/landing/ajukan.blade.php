@@ -110,11 +110,9 @@
 
                 <!-- Info Block -->
                 <div class="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm">
-                    <div class="uppercase tracking-[0.15em] text-[11px] font-bold text-red-600 mb-1.5">{{ $motor->jenisMotor?->merk ?? 'Merk' }}</div>
                     <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 leading-tight tracking-tight mb-5">{{ $motor->nama_motor }}</h1>
                     
                     <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-xs font-bold text-slate-600">{{ $motor->jenisMotor?->jenis ?? 'Tipe' }}</span>
                         <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-xs font-bold text-slate-600">{{ $motor->kapasitas_mesin ?? '150cc' }}</span>
                         <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-xs font-bold text-slate-600">{{ $motor->warna }}</span>
                     </div>

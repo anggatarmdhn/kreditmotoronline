@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
-use App\Models\JenisMotor;
 use App\Models\LandingSection;
 use App\Models\Motor;
 use App\Models\Setting;
@@ -14,26 +13,13 @@ class LandingPageController extends Controller
 {
     public function index(Request $request): View
     {
-        // Ambil semua jenis motor yang tersedia (untuk filter sidebar)
-        $types = JenisMotor::query()
-            ->whereHas('motors', fn ($q) => $q->where('is_active', true))
-            ->orderBy('merk')
-            ->orderBy('jenis')
-            ->get();
+        // Types are no longer used since id_jenis is removed
+        $types = collect();
 
         $query = Motor::query()
-            ->with('jenisMotor')
             ->where('is_active', true);
 
-        // Filter by jenis (id_jenis)
-        $selectedTypes = collect($request->input('tipe', []))
-            ->filter()
-            ->values()
-            ->all();
-
-        if (! empty($selectedTypes)) {
-            $query->whereIn('id_jenis', $selectedTypes);
-        }
+        $selectedTypes = [];
 
         $harga = $request->input('harga');
         if ($harga === '1') {
@@ -50,10 +36,7 @@ class LandingPageController extends Controller
         if ($q !== '') {
             $query->where(function ($builder) use ($q) {
                 $builder->where('nama_motor', 'like', '%'.$q.'%')
-                    ->orWhere('kode_motor', 'like', '%'.$q.'%')
-                    ->orWhereHas('jenisMotor', fn ($jq) => $jq->where('merk', 'like', '%'.$q.'%')
-                        ->orWhere('jenis', 'like', '%'.$q.'%')
-                    );
+                    ->orWhere('kode_motor', 'like', '%'.$q.'%');
             });
         }
 
@@ -78,10 +61,6 @@ class LandingPageController extends Controller
         $priceInsights = collect($priceBuckets)
             ->map(function (array $bucket, string $key) use ($selectedTypes, $q) {
                 $bucketQuery = Motor::query()->where('is_active', true);
-
-                if (! empty($selectedTypes)) {
-                    $bucketQuery->whereIn('id_jenis', $selectedTypes);
-                }
 
                 if ($q !== '') {
                     $bucketQuery->where(function ($builder) use ($q) {
